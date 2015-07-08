@@ -6,12 +6,14 @@ from rest.serializers import TrackingLogSerializer
 
 class TrackingLogView(APIView):
     """
-    A view that can accept POST requests with JSON content.
+    A view that can accept POST requests with JSON content. And try to save to DB TrackingLog model.
     """
     parser_classes = (JSONParser,)
+
     @staticmethod
     def post(request, format=None):
         serializer = TrackingLogSerializer(data=request.data)
         if serializer.is_valid():
-            return Response({'received data': request.data})
+            serializer.save()
+            return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
