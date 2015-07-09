@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from rest.models import TrackingLog
+from rest.models import Score
 
 class TrackingLogSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TrackingLog
-        fields = ("id", "points_possible", "points_earned", "user_id", "course_id", "usage_id", "instance_id")
+        model = Score
+        fields = ("id", "points_possible", "points_earned", "user_id", "course_id", "usage_id")

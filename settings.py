@@ -80,6 +80,7 @@ WSGI_APPLICATION = 'wsgi.application'
 
 DATABASES = {
     'default': {
+        # TODO: Change to Mysql
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
@@ -115,3 +116,8 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',
     )
 }
+
+# openEdx Course Structure API url
+# TODO: Change from localhost to domen
+API_COURSE_STRUCTURE_URL = 'http://127.0.0.1:8000/api/course_structure/v0/course_structures/'
+API_COURSE_GRADING_POLICY = 'http://127.0.0.1:8000/api/course_structure/v0/grading_policies/'
