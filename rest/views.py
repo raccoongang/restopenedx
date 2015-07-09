@@ -1,8 +1,7 @@
-from django.conf import settings
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest.helpers import get_api_course_request
+from rest.helpers import get_course_policy, get_course_structure
 from rest.serializers import TrackingLogSerializer
 
 
@@ -28,7 +27,7 @@ class ScoreView(APIView):
         course_id = request.query_params.get('course_id', None)
         if course_id:
             # TODO: I don't know what to do with jsons: grading_policy, course_structure
-            grading_policy = get_api_course_request(course_id, settings.API_COURSE_STRUCTURE_URL)
-            course_structure = get_api_course_request(course_id, settings.API_COURSE_GRADING_POLICY)
-            return Response({'status': 'success'}, status=201)
+            grading_policy = get_course_structure(course_id)
+            course_structure = get_course_policy(course_id)
+            return Response({'status': 'success'}, status=200)
         return Response({'error': 'Course_id is None'}, status=400)

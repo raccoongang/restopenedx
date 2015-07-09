@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import urlparse
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -119,5 +120,7 @@ REST_FRAMEWORK = {
 
 # openEdx Course Structure API url
 # TODO: Change from localhost to domen
-API_COURSE_STRUCTURE_URL = 'http://127.0.0.1:8000/api/course_structure/v0/course_structures/'
-API_COURSE_GRADING_POLICY = 'http://127.0.0.1:8000/api/course_structure/v0/grading_policies/'
+
+COURSE_STRUCTURE_API = 'http://127.0.0.1:8000/api/course_structure/v0/'
+COURSE_STRUCTURES_URL = urlparse.urljoin(COURSE_STRUCTURE_API, '/course_structures/')
+COURSE_GRADING_POLICY_URL = urlparse.urljoin(COURSE_STRUCTURE_API, '/grading_policies/')

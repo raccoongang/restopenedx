@@ -9,7 +9,6 @@ class Score(models.Model):
     course_id = models.CharField(max_length=255, blank=False, db_index=True)
     user_id = models.CharField(max_length=255, blank=False, db_index=True)
     usage_id = models.CharField(max_length=255, blank=False, db_index=True)
-    instance_id = models.CharField(max_length=255, blank=False, db_index=True, default='localhost')
 
     class Meta:
         ordering = ('created_at',)
