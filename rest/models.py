@@ -1,15 +1,14 @@
 from django.db import models
+from django.utils.timezone import now
 
 
-class TrackingLog(models.Model):
-    created = models.DateTimeField(auto_now_add=True)
-    points_possible = models.IntegerField()
-    points_earned = models.IntegerField()
-    user_id = models.IntegerField()
-    course_id = models.IntegerField()
-    usage_id = models.IntegerField()
-    instance_id = models.IntegerField()
+class Score(models.Model):
+    created_at = models.DateTimeField(editable=False, default=now, db_index=True)
+    points_earned = models.PositiveIntegerField(default=0)
+    points_possible = models.PositiveIntegerField(default=0)
+    course_id = models.CharField(max_length=255, blank=False, db_index=True)
+    user_id = models.CharField(max_length=255, blank=False, db_index=True)
+    usage_id = models.CharField(max_length=255, blank=False, db_index=True)
 
     class Meta:
-        ordering = ('created', )
-
+        ordering = ('created_at',)
