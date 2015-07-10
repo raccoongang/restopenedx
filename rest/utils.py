@@ -8,9 +8,8 @@ from rest.models import Score
 
 def send_request(url, params=None):
     """
-    :param course_id: sting
-    :param url: string (Course structure API endpoint)
-    :return: Api request to url with param course_id
+    :param url: string
+    :return: Response content
     """
     try:
         response = requests.get(url=url, params=params)
@@ -22,8 +21,7 @@ def send_request(url, params=None):
 def get_course_structure(course_id):
     FIELDS = ['has_score', 'weight', 'children', 'graded', 'format', 'always_recalculate_grades', 'max_score']
     url = urlparse.urljoin(settings.COURSE_STRUCTURE_API, '/courses/{course_id}/blocks/'.format(course_id=course_id))
-    params = {'fields': ','.join(FIELDS)}
-    return send_request(url, params)
+    return send_request(url, params={'fields': ','.join(FIELDS)})
 
 
 def get_course_policy(course_id):
