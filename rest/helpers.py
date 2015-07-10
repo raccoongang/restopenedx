@@ -3,6 +3,7 @@ from django.conf import settings
 from requests.exceptions import RequestException
 import requests
 import urlparse
+from rest.models import Score
 
 
 def get_course_api(url, course_id):
@@ -25,3 +26,6 @@ def get_course_structure(course_id):
 
 def get_course_policy(course_id):
     get_course_api(settings.COURSE_GRADING_POLICY_URL, course_id)
+
+def get_score_by_user_course_id(course_id, user_id):
+    return Score.objects.filter(course_id=course_id, user_id=user_id)
